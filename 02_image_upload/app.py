@@ -13,11 +13,9 @@ class Application(tornado.web.Application):
     def __init__(self):
         base_dir = os.path.dirname(__file__)
         settings = {
-            #"login_url":"/login",
             "template_path":os.path.join(base_dir, "templates"),
             "static_path":os.path.join(base_dir, "static"),
             "debug":True,
-            #"xsrf_cookies":True,
         }
         tornado.web.Application.__init__(self, [
             tornado.web.url(r"/", MainHandler, name="main"),

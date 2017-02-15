@@ -1,5 +1,6 @@
 # tornado_image_upload
 
-Requirement
+Requires
+ - python3
  - tornado
 
