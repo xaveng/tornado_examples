@@ -29,9 +29,9 @@ class MainHandler(tornado.web.RequestHandler):
         self.render("index.html", messages=None)
     
     def post(self):
-        now = datetime.datetime.now()
-        now = now.ctime()
         data = tornado.escape.json_decode(self.request.body)
+        now = datetime.datetime.now()
+        now = now.second
         response_to_send = dict(now = now)
         self.write(json.dumps(response_to_send))
 
