@@ -6,22 +6,29 @@
   <script>
   $(document).ready(function()
   {
-      $('#currentid').keyup(function(event){         
-		  var currentid = $("#currentid").val();
+      // Select click or interval
+      //$('#runajax').click(function(event){
+      setInterval(function() {
+          var key1 = "sample";
+		  //var valueForInput2 = $("#input2").val();
 		  var data = 
 	      { 
-			inputid:currentid
+	        key1:key1
 	      };
 	      var dataToSend = JSON.stringify(data)
 		  $.ajax(
 	 	 {
-	      url:'/idstatus',
+	      url:'/',
 	      type:'POST',
 	      data:dataToSend,
 	      success:function(jsonResponse)
 	      {
 	        var objresponse = JSON.parse(jsonResponse);
-		    $("#responsefield").text(objresponse['message']);
+		  	//console.log(objresponse['now']);
+		  	html_text = "";
+		  	html_text += "<h1 style='text-align:center; margin-top:5em;'>"+objresponse['now']+"</h1>"
+		  	$("#responsefield").html(html_text);
+		    //$("#responsefield").text(objresponse['now']);
 	      },
 	      error:function()
 	      {
@@ -29,15 +36,12 @@
 	      }
 	  });
     event.preventDefault();
-    });
+    }, 1000);
   });
   </script>
 </head>
-<body style="margin-left:43%;margin-top:10%;">
-  <form method="POST" style="margin-bottom:1em;">
-  <input id="currentid" name="currentid" type="text" style="height:2em; padding-left:1em;" placeholder="ID">
-  <button id="runajax" style="height:2.4em;"> Ok </button>
-  </form>
+<body>
+  
   <span id="responsefield"></span>
 </body>
 </html>

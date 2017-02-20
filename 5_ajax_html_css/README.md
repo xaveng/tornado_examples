@@ -1,10 +1,8 @@
-# tornado_signup_id_status
-Requires
- - python3
+# tornado_image_upload
+Requires 
+ - python3 
  - tornado
- - json
- - pymongo
 
-Refference
- - https://github.com/richstoner/TornadoAJAXSample
- - http://www.w3schools.com/jquery/event_keyup.asp
+refference
+ - https://github.com/richstoner/TornadoAJAXSample 
+ - http://stackoverflow.com/questions/16451660/tornado-request-body

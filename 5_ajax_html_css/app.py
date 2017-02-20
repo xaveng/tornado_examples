@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 
-import tornado.auth
-import tornado.escape
 import tornado.ioloop
 import tornado.options
 import tornado.web
+import tornado.escape
 import os.path
 import json
+import datetime
 
-from utils.idstatus import *
 from tornado.options import define, options
 
 define("port", default=3000, help="run on the given port", type=int)
@@ -17,7 +16,6 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             (r"/", MainHandler),
-            (r"/idstatus", IdStatusHandler),
         ]
         settings = dict(
             debug=True,
@@ -31,16 +29,10 @@ class MainHandler(tornado.web.RequestHandler):
         self.render("index.html", messages=None)
     
     def post(self):
-        inputid = self.get_argument('currentid')
-        check = insert_id_to_db(inputid)
-        self.redirect("/")
-
-class IdStatusHandler(tornado.web.RequestHandler):
-    def post(self):
-        jsonobj = tornado.escape.json_decode(self.request.body)
-        inputid = jsonobj['inputid'].strip()
-        message = get_id_status(inputid)
-        response_to_send = dict(message = message)
+        now = datetime.datetime.now()
+        now = now.ctime()
+        data = tornado.escape.json_decode(self.request.body)
+        response_to_send = dict(now = now)
         self.write(json.dumps(response_to_send))
 
 def main():
