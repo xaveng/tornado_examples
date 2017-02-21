@@ -15,14 +15,16 @@
 	  var dataToSend = JSON.stringify(data)
 	  $.ajax(
 	    {
-	      url:'/idstatus',
+	      url:'/',
 	      type:'POST',
 	      data:dataToSend,
 	      success:function(jsonResponse)
 	      {
 	        var objresponse = JSON.parse(jsonResponse);
 	        var html = "";
-	        html += "<div>" + objresponse['now'] + "</div>";
+	        html += "<div><hr style='width:" + objresponse['now'] +"%;'>"; 
+	        html += "<p>" + objresponse['now'] + "%</p>"
+	        html += "</div>";
 	    	$("#responsefield").html(html)
 	      },
 	      error:function()
@@ -35,7 +37,7 @@
   });
   </script>
 </head>
-<body style="margin-left:30%;margin-top:20%;">
-<span id="responsefield"></span>
+<body style="margin-top:20%;">
+<span id="responsefield" style="text-align:center"></span>
 </body>
 </html>
