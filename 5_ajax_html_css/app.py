@@ -7,6 +7,7 @@ import tornado.escape
 import os.path
 import json
 import datetime
+import random
 
 from tornado.options import define, options
 
@@ -32,7 +33,9 @@ class MainHandler(tornado.web.RequestHandler):
         data = tornado.escape.json_decode(self.request.body)
         now = datetime.datetime.now()
         now = now.second
-        response_to_send = dict(now = now)
+        r = lambda: random.randint(0,255)
+        color ="#%02X%02X%02X" %(r(),r(),r())
+        response_to_send = dict(now=now, color=color)
         self.write(json.dumps(response_to_send))
 
 def main():

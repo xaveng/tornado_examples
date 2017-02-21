@@ -23,7 +23,8 @@
 	        var objresponse = JSON.parse(jsonResponse);
 	        var html = "";
 	        html += "<div><hr style='width:" + objresponse['now'] +"%;'>"; 
-	        html += "<p>" + objresponse['now'] + "%</p>"
+	        html += "<h3><p style='color:" + objresponse['color'] + ";'>"; 
+	        html += objresponse['now'] + "%</p></h3>";
 	        html += "</div>";
 	    	$("#responsefield").html(html)
 	      },
