@@ -4,7 +4,6 @@ import tornado.web
 import tornado.httpserver
 import tornado.ioloop
 import os.path
-import utils.picture_manager
 
 from tornado.options import define, options
 define("port", default=3000, help="run on the given port", type=int)
@@ -23,7 +22,7 @@ class Application(tornado.web.Application):
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello, Tornado")
+        self.render("index.html")
 
 def main():
     tornado.options.parse_command_line()
