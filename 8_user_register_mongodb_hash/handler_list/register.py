@@ -1,5 +1,6 @@
 import tornado.web
-import utils.cipher
+
+from utils.cipher import *
 from .base import BaseHandler
 
 class RegisterHandler(tornado.web.RequestHandler):
@@ -9,6 +10,6 @@ class RegisterHandler(tornado.web.RequestHandler):
     def post(self):
         getusername = self.get_argument('username')
         getpassword = self.get_argument('password')
-        self.write(getusername, getpassword)
+        self.write("%s,%s" %(getusername, getpassword))
         
 
