@@ -7,4 +7,8 @@ class RegisterHandler(tornado.web.RequestHandler):
         self.render("register.html")
 
     def post(self):
+        getusername = self.get_argument('username')
+        getpassword = self.get_argument('password')
+        self.write(getusername, getpassword)
         
+

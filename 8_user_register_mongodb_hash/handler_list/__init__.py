@@ -2,6 +2,7 @@ import tornado.web
 
 from handler_list.main  import *
 from handler_list.base  import *
+from handler_list.register  import *
 
 get_handler_list = [
     tornado.web.url(r'/', MainHandler, name="main"),

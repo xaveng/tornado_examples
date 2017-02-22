@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>Tornado User Register</title>
+</head>
+<body>
+  <form action="/register" method="POST" style="margin:10% 0 0 40%;">
+    <a>Username: <input type="text" name="username" /><a><br>
+    <a>Password: <input type="password" name="password"/><a><br>
+    <a><input type="submit" value="Register" /></a>
+    {% module xsrf_form_html() %}
+  </form>
+</body>
+</html>
+

@@ -26,7 +26,6 @@ class Application(tornado.web.Application):
         }
         tornado.web.Application.__init__(self, handlers=handlers, **settings)
  
-
 def main():
     tornado.options.parse_command_line()
     server = tornado.httpserver.HTTPServer(Application())
