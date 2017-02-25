@@ -2,6 +2,7 @@
 #-*- coding:utf-8 -*-
 
 import tornado.web
+from utils.database import *
 
 class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
@@ -18,7 +19,9 @@ class LoginHandler(BaseHandler):
     def post(self):
         getusername = self.get_argument('username')
         getpassword = self.get_argument('password')
-        if "demo" == getusername and "demo" == getpassword : 
+        check = check_userinfo(getusername, getpassword)
+        #if "demo" == getusername and "demo" == getpassword : 
+        if check == True : 
             self.set_secure_cookie("user", self.get_argument("username"))
             self.set_secure_cookie("incorrect", "0")
             self.redirect(self.reverse_url("main"))
