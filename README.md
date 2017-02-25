@@ -3,3 +3,5 @@
   - Welcome to Pull Request
 
   - Excute as  "python3 app.py"
+
+  - pip install tornado, pymongo
