@@ -1,10 +1,11 @@
 # MongoDB User Register
 
 Requires 
- - python3 
- - tornado
+ - python3
  - mongodb
- - ing....
+ - pip install tornado pymongo
 
 Refference
+ - 
+
 
