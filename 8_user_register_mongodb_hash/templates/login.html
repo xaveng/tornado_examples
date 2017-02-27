@@ -1,14 +1,37 @@
 <html>
 <head>
 <title>Tornado User Register</title>
+<style>
+body {
+	background: orange;
+}
+div {
+	float:right; 
+	margin-top:15%; 
+	margin-right:30%;
+}
+
+a {
+	text-decoration: none; 
+	text-align: right;
+}
+input {
+	align-items: right;
+	width:10em;
+}
+
+</style>
 </head>
 <body>
-  <form action="/login" method="POST" style="margin:10% 0 0 40%;">
-    <a>Username: <input type="text" name="username" /><a><br>
-    <a>Password: <input type="password" name="password"/><a><br>
-    <a><input type="submit" value="Log In" /></a>
-    <a href="/register"><input type="button" value="Register" /></a>
-    {% module xsrf_form_html() %}
+  <form action="/login" method="POST">
+    <h2> Welcome! </h2>
+    <div>
+      <p>Username: <input type="text" name="username"/></p>
+      <p>Password: <input type="password" name="password"/></p>
+      <a><input type="submit" value="Log In" /></a>
+      <a href="/register" ><input type="button" value="Register" /></a>
+      {% module xsrf_form_html() %}
+    </div>
   </form>
 </body>
 </html>
