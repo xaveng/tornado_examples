@@ -20,7 +20,6 @@ class LoginHandler(BaseHandler):
         getusername = self.get_argument('username')
         getpassword = self.get_argument('password')
         check = check_userinfo(getusername, getpassword)
-        #if "demo" == getusername and "demo" == getpassword : 
         if check == True : 
             self.set_secure_cookie("user", self.get_argument("username"))
             self.set_secure_cookie("incorrect", "0")

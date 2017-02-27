@@ -11,10 +11,13 @@ class RegisterHandler(tornado.web.RequestHandler):
     def post(self):
         getusername = self.get_argument('username')
         getpassword = self.get_argument('password')
-        hashed_pw = get_hash(getpassword)
-        check = insert_userinfo_to_db(getusername, hashed_pw)
-        if check == True :
-            self.redirect('/')
+        import logging
+        logging.warning(getusername)
+        check = check_register_userinfo(getusername, getpassword)
+        if check == True : 
+            hashed_pw = get_hash(getpassword)
+            insert_check = insert_userinfo_to_db(getusername, hashed_pw)
+            self.redirect("/")
         else : self.redirect("/register")
         
         

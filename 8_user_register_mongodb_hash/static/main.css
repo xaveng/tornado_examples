@@ -1,13 +1,14 @@
+
 <style>
 body {
-	background: orange;
+	background:orange;
 }
 div {
-	float:right; 
-	margin-top:15%; 
-	margin-right:30%;
-}
 
+	text-align: center; 
+	margin-top:15%; 
+	
+}
 a {
 	text-decoration: none; 
 	text-align: right;
@@ -16,5 +17,4 @@ input {
 	align-items: right;
 	width:10em;
 }
-
 </style>
