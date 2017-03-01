@@ -27,10 +27,12 @@ class MainHandler(tornado.web.RequestHandler):
         self.render("index.html", picture_list = picture_list)
 
     def post(self):
-        picture = self.request.files['picture'][0]
-        fp = open("static/pictures/"+picture["filename"], "wb")
-        fp.write(picture["body"])
-        fp.close()
+        if self.request.files:
+            picture = self.request.files['picture'][0]
+            fp = open("static/pictures/"+picture["filename"], "wb")
+            fp.write(picture["body"])
+            fp.close()
+        else : pass
         self.redirect("/")
 
 def main():
