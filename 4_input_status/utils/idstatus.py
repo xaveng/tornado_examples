@@ -11,7 +11,7 @@ def get_id_status(inputid):
     elif len(inputid) > 20 :
         message = "- Maximum character is 20"
     elif data != None : 
-        message = "- ID '%s' is exist" %inputid
+        message = "- ID '%s' exist" %inputid
     else : 
         message = "- ID '%s' is possible" %inputid
     client.close()
