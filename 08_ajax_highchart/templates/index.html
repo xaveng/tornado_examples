@@ -6,19 +6,19 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 </head>
-<body style="margin-top:20%;">
+<body >
 <span id="responsefield" style="text-align:center"></span>
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-   <script type="text/javascript">
-  	  function abc(){
-var chart = new Highcharts.Chart({
-    chart: {
-        renderTo:'container',
-        //type:'column'
-        type:'bar'
-        //type:'area'
-        //type:'scatter'
-        //type:'bubble'
+<div id="container" style="width: 70%; height: 400px; margin: 0 auto"></div>
+<script type="text/javascript">
+  function abc(response){
+  var chart = new Highcharts.Chart({
+  chart: {
+    renderTo:'container',
+    //type:'column'
+    //type:'bar'
+    //type:'area'
+    type:'scatter'
+    //type:'bubble'
     },
     credits: {},
     exporting: {},
@@ -27,7 +27,6 @@ var chart = new Highcharts.Chart({
     tooltip: {},
     plotOptions: {
         series: {
-        
         }
     },
     xAxis: {
@@ -42,53 +41,41 @@ var chart = new Highcharts.Chart({
     },
     series:[{
         grouping:false,
-        data:[2,3,5,8,15,12,7,4]
-    },{
-        grouping:false,
-        data:[-2,-3,-5,-8,-15,-12,-7,-4]
+        data:response
     }]		
 });
-	}
-	  </script>
+}
+</script>
 
-
-  <script>
-
-
-  $(document).ready(function()
-  {
-    setInterval(function() {       
-      var currentid = $("#currentid").val();
-      var data = 
-	    { 
-	      inputid:currentid
-	    };
-	  var dataToSend = JSON.stringify(data)
-	  $.ajax(
+<script>
+$(document).ready(function()
+{
+  setInterval(function() {       
+  var currentid = $("#currentid").val();
+  var data = 
+  { 
+  inputid:currentid
+	};
+	var dataToSend = JSON.stringify(data)
+	$.ajax(
+	  {
+	    url:'/',
+	    type:'POST',
+	    data:dataToSend,
+	    success:function(jsonResponse)
 	    {
-	      url:'/',
-	      type:'POST',
-	      data:dataToSend,
-	      success:function(jsonResponse)
-	      {
-	        abc() 
-	        var objresponse = JSON.parse(jsonResponse);
-	        var html = "";
-	        html += "<div><hr style='width:" + objresponse['now'] +"%;'>"; 
-	        html += "<h3><p style='color:" + objresponse['color'] + ";'>"; 
-	        html += objresponse['now'] + "%</p></h3>";
-	        html += "</div>";
+	     	var objresponse = JSON.parse(jsonResponse);
+	      abc(objresponse['randoms'])     
 	    	$("#responsefield").html(html)
-	      },
-	      error:function()
-	      {
-	        $("#responsefield").text("Error to load api");
-	      }
+	    },
+	    error:function()
+	    {
+	      $("#responsefield").text("Error to load api");
+	    }
 	  });
     event.preventDefault();
-    }, 1000);
-  });
-  </script>
-
+  }, 1000);
+});
+</script>
 </body>
 </html>

@@ -6,7 +6,6 @@ import tornado.web
 import tornado.escape
 import os.path
 import json
-import datetime
 import random
 
 from tornado.options import define, options
@@ -30,12 +29,10 @@ class MainHandler(tornado.web.RequestHandler):
         self.render("index.html", messages=None)
     
     def post(self):
+        import random
         data = tornado.escape.json_decode(self.request.body)
-        now = datetime.datetime.now()
-        now = (now.second % 11) * 10
-        r = lambda: random.randint(0,255)
-        color ="#%02X%02X%02X" %(r(),r(),r())
-        response_to_send = dict(now=now, color=color)
+        randoms = random.sample(range(1, 20), 15)
+        response_to_send = dict(randoms=randoms)
         self.write(json.dumps(response_to_send))
 
 def main():
