@@ -32,7 +32,7 @@ class MainHandler(tornado.web.RequestHandler):
     def post(self):
         data = tornado.escape.json_decode(self.request.body)
         now = datetime.datetime.now()
-        now = now.second
+        now = (now.second % 11) * 10
         r = lambda: random.randint(0,255)
         color ="#%02X%02X%02X" %(r(),r(),r())
         response_to_send = dict(now=now, color=color)
