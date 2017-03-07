@@ -1,0 +1,6 @@
+
+1,2 template
+12 motor
+
+- jekyll markdown, view image show
+
