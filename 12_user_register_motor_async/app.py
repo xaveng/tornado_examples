@@ -5,34 +5,27 @@ import tornado.ioloop
 import tornado.web
 import tornado.options
 import os.path
+import handlers
 import motor
-import pprint
 
-from tornado import gen
 from tornado.options import define, options
 
 define("port", default=3000, help="run on the given port", type=int)
-db = motor.MotorClient('localhost').testdb
-
-class MainHandler(tornado.web.RequestHandler):
-    @gen.coroutine
-    def get(self):
-        data = yield db.userinfo.find_one()
-        pprint.pprint(data)
-        self.write("Hello, World%s" %data)
 
 class Application(tornado.web.Application):
     def __init__(self):
         base_dir = os.path.dirname(__file__)
-        handlers = [
-           tornado.web.url(r"/", MainHandler, name="main"),
-        ]
+        handler_list = handlers.get_handlers
         settings = {
+            'cookie_secret' : 'A32cahsekLkkdIiiiOepandke3331111',
+            'login_url' : '/login',
             'template_path' : os.path.join(base_dir, 'templates'),
             'static_path' : os.path.join(base_dir, 'static'),
             'debug' : True,
+            'xsrf_cookies' : False,
         }
-        tornado.web.Application.__init__(self, handlers=handlers, **settings)
+        tornado.web.Application.__init__(self, handlers=handler_list, **settings)
+        self.db = motor.MotorClient('localhost').testdb
 
 def main():
     tornado.options.parse_command_line()
@@ -43,5 +36,4 @@ def main():
 if __name__ == "__main__":
     print("Oen http://127.0.0.1:{}".format(options.port))
     main() 
-
 
