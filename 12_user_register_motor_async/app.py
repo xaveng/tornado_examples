@@ -14,11 +14,6 @@ from tornado.options import define, options
 define("port", default=3000, help="run on the given port", type=int)
 db = motor.MotorClient('localhost').testdb
 
-@gen.coroutine
-def getdata():
-    data = yield db.userinfo.find_one()
-    return data
-
 class MainHandler(tornado.web.RequestHandler):
     @gen.coroutine
     def get(self):
@@ -48,3 +43,5 @@ def main():
 if __name__ == "__main__":
     print("Oen http://127.0.0.1:{}".format(options.port))
     main() 
+
+
