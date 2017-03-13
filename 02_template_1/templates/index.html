@@ -4,6 +4,29 @@
 <link rel="shortcut icon" href="{{ static_url('orange.png') }}">
 </head>
 <body>
-Hello, world
+
+<h2>Data Transaction</h2>
+<b>get value</b> : {{ value_test }}
+<br><br>
+
+<b>get list</b>: <br>
+{% for value in list_test %}
+   <p> {{ value }} </p>
+{% end %}
+
+<b>get dict</b> : {{ dict_test['a'] }}
+<br><br>
+
+<b>get dict_list</b> : <br>
+{% for student in list_dict_test %}
+    <p> {{ student["number"]}} </p>
+{% end %}
+<hr>
+<h2>Functions</h2>
+<b>Add Function(2,3)</b> : {{ add(2,3) }}
+
+
 </body>
 </html>
+
+
