@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="{{ static_url('orange.png') }}">
+  <title>{% block title %} Default title {% end %}</title>
+</head>
+<body>
+
+<h2> Data Transaction </h2>
+<ul>
+  {% for student in students %}
+    {% block student %}
+      <li>{{ escape(student['name']) }} </li>
+    {% end %}
+  {% end %}
+</ul>
+
+
+</body>
+</html>
+
