@@ -26,13 +26,17 @@ class Application(tornado.web.Application):
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
+        linkify_test = "http://localhost:3000/second"
         students = [dict(name="abc"), dict(name="def"), dict(name="ghi")]
-        self.render("base.html", students=students, title="title")
+        self.render("base.html", students=students, title="title",
+                                 linkify_test = linkify_test)
 
 class SecondHandler(tornado.web.RequestHandler):
     def get(self):
+        linkify_test = "http://localhost:3000"
         students = [dict(name="abc"), dict(name="def"), dict(name="ghi")]
-        self.render("bold.html", students=students, title="title")
+        self.render("bold.html", students=students, title="title",
+                                linkify_test = linkify_test)
 
 def main():
     tornado.options.parse_command_line()

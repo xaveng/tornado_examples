@@ -2,7 +2,7 @@
 <html>
 <head>
   <link rel="shortcut icon" href="{{ static_url('orange.png') }}">
-  <title>{% block title %} Default title {% end %}</title>
+  <title> {% block title %} Default title {% end %} </title>
 </head>
 <body>
 
@@ -10,11 +10,21 @@
 <ul>
   {% for student in students %}
     {% block student %}
-      <li>{{ escape(student['name']) }} </li>
+      <li> {{ escape(student['name']) }} </li>
     {% end %}
   {% end %}
 </ul>
 
+<hr>
+
+Linkify_test :<br>
+Raw data : {% raw linkify_test %} <br>
+Normal data : {{ linkify_test }} <br>
+Linkify_data : {% apply linkify %} {{ linkify_test }} {% end %} <br>
+
+<hr>
+sub.html <br>
+{% module Template("sub.html") %}
 
 </body>
 </html>
