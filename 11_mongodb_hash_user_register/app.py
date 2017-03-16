@@ -6,7 +6,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.options
 import os.path
-import handler_list
+import handlers
 
 from tornado.options import define, options
 
@@ -15,7 +15,7 @@ define("port", default=3000, help="run on the given port", type=int)
 class Application(tornado.web.Application):
     def __init__(self):
         base_dir = os.path.dirname(__file__)
-        handlers = handler_list.get_handler_list
+        handlers_list = handlers.get_handler_list
         settings = {
             'cookie_secret' : '2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ',
             'login_url' : '/login',
@@ -24,7 +24,7 @@ class Application(tornado.web.Application):
             'debug' : True,
             'xsrf_cookies' : False,
         }
-        tornado.web.Application.__init__(self, handlers=handlers, **settings)
+        tornado.web.Application.__init__(self, handlers=handler_list, **settings)
  
 def main():
     tornado.options.parse_command_line()
