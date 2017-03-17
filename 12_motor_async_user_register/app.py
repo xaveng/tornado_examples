@@ -17,7 +17,7 @@ class Application(tornado.web.Application):
         base_dir = os.path.dirname(__file__)
         handler_list = handlers.get_handlers
         settings = {
-            'cookie_secret' : 'A32cahsekLkkdIiiiOepandke3331111',
+            'cookie_secret' : 'A32IOJDSOP2PPAAA11',
             'login_url' : '/login',
             'template_path' : os.path.join(base_dir, 'templates'),
             'static_path' : os.path.join(base_dir, 'static'),
@@ -34,6 +34,6 @@ def main():
     tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":
-    print("Oen http://127.0.0.1:{}".format(options.port))
+    print("Open http://127.0.0.1:{}".format(options.port))
     main() 
 

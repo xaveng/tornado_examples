@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    setInterval(function(){
+      var key = "samples";
+      var data = { key : key };
+      var dataToSend = JSON.stringify(data)
+      $.ajax({
+        url : '/',
+        type : 'POST',
+        data : dataToSend,
+        success : function(jsonResponse){
+          var objresponse = JSON.parse(jsonResponse);
+          text = "";
+          for (i=0; i<jsonResponse.length; i++){
+            text += "<h3>"+jsonResponse[i]['name'] 
+            text += ": "+jsonResponse[i]['counter'] + "</h3>"  
+          }
+          $("#responsefiled").html(text);
+        },
+        error:function(){
+          $("#responsefiled").text("Error to load API");
+        }
+      });
+    event.preventDefault();
+    }, 1000);
+  });
+  </script>
+  <script>
+  $(document).on("click", function(){
+    var key = "counter";
+    var data = {key:key};
+    var dataToSend = JSON.stringify(data)
+    $.ajax({
+      url :'/',
+      type : 'POST',
+      data : dataToSend,
+      success : function(){
+      },
+      error : function(){
+        $("#counter").text("Error to load API");
+      }
+    });
+  });
+  </script>
+</head>
+<body>
+  <button id="counter"> Add a Counter </button>
+  <span id="responsefield"> aaa</span>
+</body>
+</html>
+        
