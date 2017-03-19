@@ -6,6 +6,7 @@ import tornado.ioloop
 import os.path
 
 from tornado.options import define, options
+
 define("port", default=3000, help="run on the given port", type=int)
 
 class Application(tornado.web.Application):
@@ -17,6 +18,7 @@ class Application(tornado.web.Application):
             "debug":True,
         }
         tornado.web.Application.__init__(self, [
+            tornado.web.url(r"/(favicon.ico)", tornado.web.StaticFileHandler, {"path": ""}),
             tornado.web.url(r"/", MainHandler, name="main"),
         ], **settings)
 
