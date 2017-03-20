@@ -8,9 +8,6 @@ import os.path
 from tornado.options import define, options
 define("port", default=3000, help="run on the given port", type=int)
 
-def add(x,y):
-    return x+y
-
 class Application(tornado.web.Application):
     def __init__(self):
         base_dir = os.path.dirname(__file__)
