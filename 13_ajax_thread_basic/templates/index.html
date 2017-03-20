@@ -13,16 +13,20 @@
         type : 'POST',
         data : dataToSend,
         success : function(jsonResponse){
-          var objresponse = JSON.parse(jsonResponse);
-          text = "";
-          for (i=0; i<jsonResponse.length; i++){
-            text += "<h3>"+jsonResponse[i]['name'] 
-            text += ": "+jsonResponse[i]['counter'] + "</h3>"  
+          jsonResponse = jsonResponse.replace(/}{/gi,"},{");
+          var objresponse = JSON.parse("["+jsonResponse+"]");
+
+          text = ""; 
+          for (i=0; i<objresponse.length; i++){
+            text += "<h4>"+objresponse[i]['name'] 
+            text += ": "+objresponse[i]['counter'] + "%" 
+            text += "<hr width='" + objresponse[i]['counter'] + "%'" 
+            text += "align='left' color="+objresponse[i]['color']+"></h4>"  
           }
-          $("#responsefiled").html(text);
+          $("#responsefield").html(text);
         },
         error:function(){
-          $("#responsefiled").text("Error to load API");
+          $("#responsefield").text("Error to load API");
         }
       });
     event.preventDefault();
@@ -30,7 +34,8 @@
   });
   </script>
   <script>
-  $(document).on("click", function(){
+  $(document).ready(function(){
+  $('#counter').click(function(){
     var key = "counter";
     var data = {key:key};
     var dataToSend = JSON.stringify(data)
@@ -45,11 +50,12 @@
       }
     });
   });
+  });
   </script>
 </head>
 <body>
   <button id="counter"> Add a Counter </button>
-  <span id="responsefield"> aaa</span>
+  <div id="responsefield" style="align-content:left;"> aaa</div>
 </body>
 </html>
         
