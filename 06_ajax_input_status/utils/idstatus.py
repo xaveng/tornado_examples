@@ -4,8 +4,7 @@ def get_id_status(inputid):
     client = MongoClient('localhost')
     db = client.testdb
     data, message = None, None 
-    queries = db.userinfo.find(dict(userid = inputid))
-    for query in queries : data = query
+    data = db.userinfo.find_one(dict(userid = inputid))
     if len(inputid) < 4: 
         message = "- Minimum character is 4"
     elif len(inputid) > 20 :
@@ -24,3 +23,4 @@ def insert_id_to_db(inputid):
     db.userinfo.insert(dict(userid = inputid))
     client.close()
     return
+
