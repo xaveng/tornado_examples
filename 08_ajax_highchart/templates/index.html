@@ -3,8 +3,7 @@
 <head>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
 </head>
 <body >
 <span id="responsefield" style="text-align:center"></span>
@@ -46,7 +45,6 @@
 });
 }
 </script>
-
 <script>
 $(document).ready(function()
 {
@@ -66,7 +64,6 @@ $(document).ready(function()
 	    {
 	     	var objresponse = JSON.parse(jsonResponse);
 	      abc(objresponse['randoms'])     
-	    	$("#responsefield").html(html)
 	    },
 	    error:function()
 	    {
