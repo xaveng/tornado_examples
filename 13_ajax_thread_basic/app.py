@@ -45,7 +45,7 @@ class MainHandler(BaseHandler):
         getkey = tornado.escape.json_decode(self.request.body)
         logging.warning(getkey)
         if getkey['key'] == "counter" : utils.thread.start_thread()
-        cursor = self.db.counter.find({},{'_id':False})
+        cursor = self.db.counter.find({},{'_id':False}).sort([('name',-1)])
         while (yield cursor.fetch_next):
             self.write(json.dumps(cursor.next_object()))
         self.finish()
