@@ -15,7 +15,7 @@ define("port", default=3000, help="run on the given port", type=int)
 class Application(tornado.web.Application):
     def __init__(self):
         base_dir = os.path.dirname(__file__)
-        handlers_list = handlers.get_handler_list
+        handler_list = handlers.get_handler_list
         settings = {
             'cookie_secret' : '2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ',
             'login_url' : '/login',

@@ -11,8 +11,6 @@ class RegisterHandler(tornado.web.RequestHandler):
     def post(self):
         getusername = self.get_argument('username')
         getpassword = self.get_argument('password')
-        import logging
-        logging.warning(getusername)
         check = check_register_userinfo(getusername, getpassword)
         if check == True : 
             hashed_pw = get_hash(getpassword)
