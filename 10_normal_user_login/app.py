@@ -25,7 +25,6 @@ class Application(tornado.web.Application):
             'xsrf_cookies' : False,
         }
         tornado.web.Application.__init__(self, handlers=handler_list, **settings)
- 
 
 def main():
     tornado.options.parse_command_line()

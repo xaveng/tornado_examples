@@ -6,3 +6,4 @@ class MainHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
         self.render("main.html", nonce = utils.cipher.get_nonce())
+
