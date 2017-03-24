@@ -1,6 +1,4 @@
-#!/usr/bin/env python
 #-*- coding:utf-8 -*-
-
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
@@ -15,7 +13,6 @@ from tornado.options import define, options
 define("port", default=3000, help="run on the given port", type=int)
 
 class MainHandler(tornado.web.RequestHandler):
-    #@tornado.web.authenticated
     def get(self):
         self.render('index.html')
 
@@ -38,12 +35,9 @@ class Application(tornado.web.Application):
     def __init__(self):
         base_dir = os.path.dirname(__file__)
         settings = {
-            #'cookie_secret': 'bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=',
-            #'login_url': '/login',
             'template_path': os.path.join(base_dir, 'templates'),
             'static_path': os.path.join(base_dir, 'static'),
             'debug':True,
-            #'xsrf_cookies': True,
         }
         
         tornado.web.Application.__init__(self, [
