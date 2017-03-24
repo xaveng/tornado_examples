@@ -1,5 +1,4 @@
 #-*- coding:utf -*-
-
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
@@ -37,6 +36,7 @@ class BaseHandler(tornado.web.RequestHandler):
         return self.application.db
 
 class MainHandler(BaseHandler):
+    @gen.coroutine
     def get(self):
         self.render("index.html")
 
