@@ -1,4 +1,0 @@
-
-
-- jekyll markdown, view image show
-
