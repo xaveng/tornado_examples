@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
 import tornado.httpserver
@@ -22,7 +21,7 @@ class Application(tornado.web.Application):
             'template_path' : os.path.join(base_dir, 'templates'),
             'static_path' : os.path.join(base_dir, 'static'),
             'debug' : True,
-            'xsrf_cookies' : False,
+            'xsrf_cookies' : True,
         }
         tornado.web.Application.__init__(self, handlers=handler_list, **settings)
 
