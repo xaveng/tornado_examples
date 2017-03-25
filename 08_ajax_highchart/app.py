@@ -26,10 +26,9 @@ class Application(tornado.web.Application):
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("index.html", messages=None)
+        self.render("index.html")
     
     def post(self):
-        import random
         data = tornado.escape.json_decode(self.request.body)
         randoms = random.sample(range(1, 20), 15)
         response_to_send = dict(randoms=randoms)
